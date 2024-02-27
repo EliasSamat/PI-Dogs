@@ -1,0 +1,31 @@
+.contenedor {
+    margin-top: 10px; /* Espaciado superior */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas */
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .barra {
+    flex: 1; /* Ocupa el espacio disponible */
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background-color: #555; /* Color de fondo de la barra */
+    color: #fff; /* Color del texto blanco */
+  }
+  
+  .bottonn {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6600; /* Color de fondo del botón */
+    color: #fff; /* Color del texto blanco */
+    cursor: pointer;
+  }
+  
+  .bottonn:hover {
+    background-color: #cc5500; /* Cambio de color al pasar el ratón por encima */
+  }
+   
+  

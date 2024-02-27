@@ -32,3 +32,10 @@
     background-color: #eee;
   }
   
+  .button {
+    border-radius: 5px;
+    border: 1px solid #8586e7;
+    color: #ffffff;
+    background-image: linear-gradient(to right, #010111, #000266);
+    cursor: pointer;
+  } 

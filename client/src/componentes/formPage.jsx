@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../style/formPage.css"
 
 function FormPage() {
   const [nombre, setNombre] = useState("");
@@ -21,86 +23,179 @@ function FormPage() {
     setError("");
     return true;
   };
-  
-  const handleTemperamentoChange = (e) => {
-    const selectedTemperamento = e.target.value;
-    if (!temperamentos.includes(selectedTemperamento)) {
-      setTemperamentos([...temperamentos, selectedTemperamento]);
-    }
+  const validateNumero = (value ) => {
+    return !isNaN(value) && value >= 0 ;
   };
-
+  const validateNombre = (value) => {
+    const hasNumber = /\d/.test(value);
+    return !hasNumber;
+  };
+  const handleTemperamentoChange = (e) => {
+  const selectedTemperamento = e.target.value;
+  if (!temperamentos.includes(selectedTemperamento)) {
+    setTemperamentos([...temperamentos, selectedTemperamento]);
+  }
+};  
+const handleRemoveTemperamento = (index) => {
+  // Crea una copia del array de temperamentos
+  const newTemperamentos = [...temperamentos];
+  // Elimina el temperamento en el índice dado
+  newTemperamentos.splice(index, 1);
+  // Actualiza el estado con la nueva lista de temperamentos
+  setTemperamentos(newTemperamentos);
+};
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-    // Realiza la acción de creación de la raza con los datos recopilados
-    const nuevaRaza = {
-      nombre,
-      altura: `${alturaMin} - ${alturaMax}`,
-      peso: `${pesoMin} - ${pesoMax}`,
-      aniosDeVida,
-      temperamentos,
-      imagen,
-    };
-    console.log(nuevaRaza);
-    // Aquí puedes enviar los datos al servidor o realizar otra acción
-    fetch("http://localhost:3001/dogs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(nuevaRaza),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Procesar la respuesta del servidor, si es necesario
-        console.log(data);
-        setSuccessMessage("¡La raza fue creada con éxito!");
+    if (validateForm()) { 
+      // Crea el objeto de la nueva raza con los datos recopilados
+      const nuevaRaza = {
+        
+        name: nombre,
+        height: `${alturaMin} - ${alturaMax}`,
+        weight: `${pesoMin} - ${pesoMax}`,
+        lifespan: aniosDeVida,
+        temperaments: temperamentos , // Envía los datos de los temperamentos
+        image: imagen,
+      };
+  
+      // Envía los datos al servidor
+      fetch("http://localhost:3001/dogs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nuevaRaza),
       })
-      .catch((error) => {
-        console.error("Error al enviar los datos al servidor:", error);
-      });
-  }
+        .then((response) => response.json())
+        .then((data) => {
+          // Procesar la respuesta del servidor, si es necesario
+          console.log(data);
+          setSuccessMessage("¡La raza fue creada con éxito!");
+        })
+        .catch((error) => {
+          console.error("Error al enviar los datos al servidor:", error);
+        });
+    }
   };
+  
 
   return (
     <div>
-      <h1>CREA TU PERRO</h1>
+      <h1>CREA TU PERRO{temperamentos}</h1>
       <form onSubmit={handleSubmit}>
       {error && <div style={{ color: "red" }}>{error}</div>}
       {successMessage && <div style={{ color: "green" }}>{successMessage}</div>}
         <label>
           Nombre :
-          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+          <input    
+           type="text"
+    value={nombre}
+    onChange={(e) => {
+      const newValue = e.target.value;
+      if (validateNombre(newValue) ) {
+        setNombre(newValue);
+        setError("");
+      } else {
+        setError("El nombre no puede contener números.");
+      }
+      
+    }}
+ />
         </label>
         <hr/>
 
         <label>
           Altura (Mínima) :
-          <input type="text" value={alturaMin} onChange={(e) => setAlturaMin(e.target.value)} />
+          <input  
+          type="text"
+          value={alturaMin}
+          onChange={(e) => {
+      const newValue = e.target.value;
+      if (validateNumero(newValue)) {
+        setAlturaMin(newValue);
+        setError("");
+      } else {
+        setError("La altura mínima debe ser un número válido.");
+      }
+      
+    }} />
         </label>
         <hr/>
 
         <label>
           Altura (Máxima) :
-          <input type="text" value={alturaMax} onChange={(e) => setAlturaMax(e.target.value)} />
+          <input  type="text"
+    value={alturaMax}
+    onChange={(e) => {
+      const newValue = e.target.value;
+      if (validateNumero(newValue)) {
+        setAlturaMax(newValue);
+        setError("");
+      } else {
+        setError("La altura mínima debe ser un número válido.");
+      }
+      if (parseFloat(newValue) > parseFloat(alturaMin)){
+        setError("")
+      }else {setError("debe ser mayor a la altura minima") }
+    }} />
         </label>
         <hr/>
 
         <label>
           Peso (Mínimo) :
-          <input type="text" value={pesoMin} onChange={(e) => setPesoMin(e.target.value)} />
+          <input  type="text"
+    value={pesoMin}
+    onChange={(e) => {
+      const newValue = e.target.value;
+      if (validateNumero(newValue)) {
+        setPesoMin(newValue);
+        setError("");
+      } else {
+        setError("La altura mínima debe ser un número válido.");
+      }
+    }} />
         </label>
         <hr/>
 
         <label>
           Peso (Máximo) :
-          <input type="text" value={pesoMax} onChange={(e) => setPesoMax(e.target.value)} />
+          <input type="text"
+    value={pesoMax}
+    onChange={(e) => {
+      const newValue = e.target.value;
+      if (validateNumero(newValue)) {
+        setPesoMax(newValue);
+        setError("");
+      } else {
+        setError("La altura mínima debe ser un número válido.");
+      }
+      if (parseFloat(newValue) > parseFloat(pesoMin)){
+        setError("")
+      }else{
+        setError("tiene que ser mayor al peso minimo")
+      }
+    }} />
         </label>
         <hr/>
 
         <label>
           Años de Vida :
-          <input type="text" value={aniosDeVida} onChange={(e) => setAniosDeVida(e.target.value)} />
+          <input  type="text"
+    value={aniosDeVida}
+    onChange={(e) => {
+      const newValue = e.target.value;
+      if (validateNumero(newValue)) {
+        setAniosDeVida(newValue);
+        setError("");
+      } else {
+        setError("La altura mínima debe ser un número válido.");
+      }
+      if(newValue <= 30){
+        setError("")
+      }else{
+setError("debe ser una edad valida")
+      }
+    }} />
         </label>
         <hr/>
 
@@ -231,11 +326,16 @@ function FormPage() {
         <option value="Playful">Playful</option>
         <option value="Curious">Curious</option>
         <option value="Stubborn">Stubborn</option>
-            {/* Agregar más opciones de temperamentos aquí */}
+           
           </select>
           <ul>
             {temperamentos.map((temp, index) => (
-              <li key={index}>{temp}</li>
+              <li key={index}>{temp} <button
+              type="button"
+              onClick={() => handleRemoveTemperamento(index)}
+            >
+              X
+            </button></li>
             ))}
           </ul>
         </label>
@@ -245,6 +345,9 @@ function FormPage() {
           <input type="text" value={imagen} onChange={(e) => setImagen(e.target.value)} />
         </label>
         <button type="submit">Crear Nueva Raza </button>
+        <Link to = "/homePage">
+          <h1>home</h1>
+        </Link>
       </form>
     </div>
   );

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Cards from "./cards";
+import "../style/serchBar.css"
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); 
   const [searchedData, setSearchedData] = useState([]); // Nuevo estado para los resultados de búsqueda
 
   useEffect(() => {
@@ -16,14 +17,14 @@ function SearchBar() {
         console.error("Error fetching data:", error);
       });
   }, [searchTerm]);
-
+ 
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
   const handleSearchClick = () => {
-   
-    setSearchedData(data);
+  
+     setSearchedData(data);
   };
 
   return (
@@ -38,8 +39,7 @@ function SearchBar() {
       <button className="botonn" onClick={handleSearchClick}>
         🔎
       </button>
-
-      <h1>Encontramos esto. . .</h1>
+ 
       <Cards characters={searchedData} /> {/* Mostrar los resultados de la búsqueda */}
     </div>
   );

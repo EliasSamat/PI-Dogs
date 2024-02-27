@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/HomePage.css"
+import "../style/filterBar.css"
 function FilterBar({ onFilterChange }) {
   const [selectedTemperament, setSelectedTemperament] = useState("");
   const [selectedOrigin, setSelectedOrigin] = useState("");
@@ -24,7 +24,7 @@ function FilterBar({ onFilterChange }) {
   
   return (
     <div className="filter-bar">
-      <label htmlFor="temperament-filter">Filtrar por temperamento:</label>
+      <label htmlFor="temperament-filter">temperamento:</label>
       <select
         id="temperament-filter"
         value={selectedTemperament}
@@ -157,7 +157,7 @@ function FilterBar({ onFilterChange }) {
       </select>
 
 
-      <label htmlFor="origin-filter">Filtrar por origen:</label>
+      <label htmlFor="origin-filter">origen:</label>
       <select
         id="origin-filter"
         value={selectedOrigin}

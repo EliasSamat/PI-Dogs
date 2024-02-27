@@ -1,6 +1,6 @@
 .inicio {
     background-image: url("../image/dogs.jpg");
-    background-size: cover;
+    background-size:auto;
     background-position: center;
     min-height: 100vh;
     display: flex;

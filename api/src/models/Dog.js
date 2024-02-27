@@ -11,35 +11,29 @@ const { DataTypes } = require('sequelize');
     },
     imagen: {
       type: DataTypes.STRING,
-      allowNull: false, 
+      allowNull: true, 
     },
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     altura: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.STRING,
       allowNull: false, 
     },
     peso: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.STRING,
       allowNull: false, 
     },
     años_de_vida: {
       type: DataTypes.DECIMAL,
       allowNull: false, 
-    },
+    }, 
   },{
-    timestamps: false, // Desactiva la generación automática de createdAt y updatedAt
+    timestamps: false, 
   });
 };
+ 
 module.exports = Dog ;  
 
 
-
-// ID.*
-// Imagen.*
-// Nombre.*
-// Altura.*
-// Peso.*
-// Años de vida.*

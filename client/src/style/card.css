@@ -1,5 +1,6 @@
 /* styles.css */
-.card {
+.card { 
+  background-image: linear-gradient(to right, #61634d, #4b501c);
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
@@ -14,4 +15,11 @@
     max-width: 100%;
     height: auto;
   }
-  
+.card h1{
+
+  color: black;
+}  
+
+.card p{
+  color: black;
+}

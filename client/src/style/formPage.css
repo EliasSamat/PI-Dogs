@@ -1,0 +1,69 @@
+div {
+    text-align: center;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-family: "Arial", sans-serif;
+    color: #ff6600;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="#666666" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12.586l-6.293-6.293-1.414 1.414 7 7a.999.999 0 0 0 1.414 0l7-7-1.414-1.414z"/><path d="M4 2h12c1.104 0 2 .896 2 2v12c0 1.104-.896 2-2 2H4c-1.104 0-2-.896-2-2V4c0-1.104.896-2 2-2zm0 4l8 8 8-8H4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+  
+  button[type="submit"] {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #cc5500;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 5px;
+  }
+  
+  ul li::before {
+    content: "•";
+    margin-right: 5px;
+    color: #ff6600;
+  }
+  

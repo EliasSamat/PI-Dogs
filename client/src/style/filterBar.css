@@ -1,0 +1,54 @@
+.filter-bar {
+    background-color: #333; /* Color de fondo oscuro */
+    color: #fff; /* Color del texto blanco */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas */
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .filter-bar label {
+    margin-bottom: 10px; /* Espaciado inferior entre etiquetas */
+    flex: 1; /* Ocupa el espacio disponible igualmente */
+  }
+  
+  .filter-bar select, .filter-bar button {
+    flex: 2; /* Ocupa el doble de espacio que las etiquetas */
+    margin-right: 10px; /* Espaciado derecho entre selects y botón */
+  }
+  
+  .filter-bar select:last-child, .filter-bar button {
+    margin-right: 0; /* Elimina el margen derecho del último select y botón */
+  }
+  
+  .filter-bar button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #101d69; /* Color de fondo del botón */
+    color: #fff; /* Color del texto blanco */
+    cursor: pointer;
+  }
+  
+  .filter-bar button:hover {
+    background-color: #cc5500; /* Cambio de color al pasar el ratón por encima */
+  }
+  
+  /* Estilos específicos para pantallas de dispositivos móviles */
+  @media screen and (max-width: 768px) {
+    .filter-bar {
+      flex-direction: column; /* Cambia la dirección del flexbox a vertical */
+      align-items: stretch; /* Estira los elementos para ocupar todo el ancho */
+    }
+  
+    .filter-bar select, .filter-bar button {
+      margin-right: 0; /* Elimina el margen derecho para que los elementos se alineen correctamente */
+    }
+  
+    .filter-bar select, .filter-bar button {
+      width: 100%; /* Establece el ancho al 100% para que ocupe todo el contenedor */
+    }
+  }
+  
